@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc235ac7037ccc84b8b422656866f01b, type: 3}
   m_Name: GridSettings
   m_EditorClassIdentifier: Assembly-CSharp::GridSettings
-  _gridSizeX: 0
-  _gridSizeY: 0
-  _nodeSize: 0
-  _useXZPlane: 0
+  _gridSizeX: 10
+  _gridSizeY: 10
+  _nodeSize: 1
+  _useXZPlane: 1
