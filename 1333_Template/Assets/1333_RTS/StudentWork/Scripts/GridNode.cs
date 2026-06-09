@@ -9,4 +9,5 @@ public struct GridNode
     public bool Walkable;
     public int Weight;
     public TerrainType TerrainType;
+    public Color GizmoColor;
 }
