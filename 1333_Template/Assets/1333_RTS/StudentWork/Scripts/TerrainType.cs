@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TerrainType")]
+[CreateAssetMenu(fileName = "TerrainType", menuName = "Game/TerrainType")]
 public class TerrainType : ScriptableObject
 {
     [SerializeField] private string _terrainName;

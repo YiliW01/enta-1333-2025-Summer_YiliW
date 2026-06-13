@@ -6,6 +6,7 @@ public struct GridNode
 {
     public string Name; //index for us to keep track and organize nodes
     public Vector3 WorldPos;
+    public TerrainType TerrainType;
 
     // if TerrainType is not null, set walkable to Terrain walkable
     // if null, set walkable to false
@@ -18,6 +19,4 @@ public struct GridNode
     // if terraintype is not null, set color to terrain color
     // if null, set color to gray
     public Color GizmoColor => TerrainType != null ? TerrainType.TerrainColor : Color.gray;
-
-    public TerrainType TerrainType;
 }
