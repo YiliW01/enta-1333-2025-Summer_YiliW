@@ -81,6 +81,27 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+    //Create a custom editor button that, when pressed, calls PopulateDebugList and refreshes the Editor GUI
+    [CustomEditor(typeof(GridManager))]
+    public class GridManagerEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            //first draw the normal inspector GUI
+            DrawDefaultInspector();
+
+            //then look at the GridManager class this is attached to and call the PopulateDebugList function
+            GridManager grid = (GridManager)target;
+            if (grid.IsInitialized)
+            {
+                if (GUILayout.Button("Refresh Grid Debug View"))
+                {
+                    grid.PopulateDebugList();
+                }
+            }
+        }
+    }
 #endif
 
     //Function to retrieve GridNode data efficiently
@@ -115,27 +136,6 @@ public class GridManager : MonoBehaviour
                 GridNode node = _gridNodes[x, y];
                 Gizmos.color = node.Walkable ? Color.green : Color.red;
                 Gizmos.DrawWireCube(node.WorldPos, Vector3.one * GridSettings.NodeSize * 0.9f);
-            }
-        }
-    }
-
-    //Create a custom editor button that, when pressed, calls PopulateDebugList and refreshes the Editor GUI
-    [CustomEditor(typeof(GridManager))]
-    public class GridManagerEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            //first draw the normal inspector GUI
-            DrawDefaultInspector();
-
-            //then look at the GridManager class this is attached to and call the PopulateDebugList function
-            GridManager grid = (GridManager)target;
-            if (grid.IsInitialized)
-            {
-                if(GUILayout.Button("Refresh Grid Debug View"))
-                {
-                    grid.PopulateDebugList();
-                }
             }
         }
     }

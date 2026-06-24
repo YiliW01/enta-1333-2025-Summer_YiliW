@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
@@ -44,6 +45,11 @@ public class ButtonScript : MonoBehaviour
         {
             optionsCanvas.blocksRaycasts = false;
         });
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadSceneAsync("RTS");
     }
 
     public void Exit()
