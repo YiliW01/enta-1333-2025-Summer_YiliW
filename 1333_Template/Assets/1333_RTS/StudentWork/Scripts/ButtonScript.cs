@@ -4,18 +4,50 @@ using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
 {
-    [SerializeField] private RectTransform buttonRect;
-    private float rectStartWidth;
-    [SerializeField] private Vector3 scaleWidthffff;
-    private float scaleWidth = 2;
+    [SerializeField] private RectTransform startPanel;
+    [SerializeField] private CanvasGroup startCanvas;
 
-    private void Start()
+    [SerializeField] private RectTransform optionsPanel;
+    [SerializeField] private CanvasGroup optionsCanvas;
+
+    private float openPos = 0f;
+    private float closedPos = -1050f;
+    [SerializeField] private float transitionDuration;
+
+    public void OpenStart()
     {
-        
+        startPanel.DOAnchorPosY(openPos, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() =>
+        {
+            startCanvas.blocksRaycasts = true;
+        });
     }
 
-    public void Highlight()
+    public void CloseStart()
     {
-        buttonRect.DOScaleX(scaleWidth, 1f);
+        startPanel.DOAnchorPosY(closedPos, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() =>
+        {
+            startCanvas.blocksRaycasts = false;
+        });
+    }
+
+    public void OpenOptions()
+    {
+        optionsPanel.DOAnchorPosY(openPos, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() =>
+        {
+            optionsCanvas.blocksRaycasts = true;
+        });
+    }
+
+    public void CloseOptions()
+    {
+        optionsPanel.DOAnchorPosY(closedPos, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() =>
+        {
+            optionsCanvas.blocksRaycasts = false;
+        });
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 }
