@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool isPaused = false;
 
     [SerializeField] CinemachineCamera cam;
+    [SerializeField] GameObject camTarget;
     private Vector3 input;
     private float panSpeed = 10f;
     private bool keyboardPanning;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
         {
             pausePanel.DOAnchorPosY(openPos, transitionDuration).SetEase(Ease.OutQuad);
             isPaused = true;
+            input = new Vector3(0f, 0f, 0f);
             return;
         }
 
@@ -48,7 +50,7 @@ public class PlayerController : MonoBehaviour
     }
     private void MoveCamera()
     {
-        cam.transform.Translate(input * Time.deltaTime * panSpeed, Space.World);
+        camTarget.transform.Translate(input * Time.deltaTime * panSpeed, Space.World);
     }
 
     private void ZoomCamera()
@@ -74,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
     public void MousePan(InputAction.CallbackContext context)
     {
+        //Vector2 input = context.ReadValue<Vector2>();
         if (keyboardPanning) return;
         if (!isPaused)
         {
@@ -85,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
             if (context.ReadValue<Vector2>().y > (Screen.height * 0.9f)) { input.z = 1f; }
             else if (context.ReadValue<Vector2>().y < (Screen.height * 0.1f)) { input.z = -1f; } 
-            else { input.z = 0f; }
+            else { input.z = 0f; }  
         }
     }
 

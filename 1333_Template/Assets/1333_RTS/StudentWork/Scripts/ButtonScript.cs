@@ -12,12 +12,14 @@ public class ButtonScript : MonoBehaviour
     [SerializeField] private CanvasGroup optionsCanvas;
 
     private float openPos = 0f;
-    private float closedPos = -1050f;
-    [SerializeField] private float transitionDuration;
+    private float closedPosOptions = -1050f;
+    private float closedPosStart = 1050f;
+    [SerializeField] private float transitionDuration = 1f;
+    [SerializeField] private float easeOvershoot;
 
     public void OpenStart()
     {
-        startPanel.DOAnchorPosY(openPos, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() =>
+        startPanel.DOAnchorPosY(openPos, transitionDuration).SetEase(Ease.OutElastic, easeOvershoot).OnComplete(() =>
         {
             startCanvas.blocksRaycasts = true;
         });
@@ -25,7 +27,7 @@ public class ButtonScript : MonoBehaviour
 
     public void CloseStart()
     {
-        startPanel.DOAnchorPosY(closedPos, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() =>
+        startPanel.DOAnchorPosY(closedPosStart, transitionDuration).SetEase(Ease.OutElastic, easeOvershoot).OnComplete(() =>
         {
             startCanvas.blocksRaycasts = false;
         });
@@ -33,7 +35,7 @@ public class ButtonScript : MonoBehaviour
 
     public void OpenOptions()
     {
-        optionsPanel.DOAnchorPosY(openPos, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() =>
+        optionsPanel.DOAnchorPosY(openPos, transitionDuration).SetEase(Ease.OutElastic, easeOvershoot).OnComplete(() =>
         {
             optionsCanvas.blocksRaycasts = true;
         });
@@ -41,7 +43,7 @@ public class ButtonScript : MonoBehaviour
 
     public void CloseOptions()
     {
-        optionsPanel.DOAnchorPosY(closedPos, transitionDuration).SetEase(Ease.OutQuad).OnComplete(() =>
+        optionsPanel.DOAnchorPosY(closedPosOptions, transitionDuration).SetEase(Ease.OutElastic, easeOvershoot).OnComplete(() =>
         {
             optionsCanvas.blocksRaycasts = false;
         });
