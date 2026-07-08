@@ -907,7 +907,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
   _gridSettings: {fileID: 11400000, guid: 105ed5177099330428a677ac17881219, type: 2}
+  _defaultTerrainType: {fileID: 0}
   AllNodes: []
+  showGrid: 1
+  showNodeInfo: 0
 --- !u!4 &816723431
 Transform:
   m_ObjectHideFlags: 0
